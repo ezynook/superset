@@ -1,0 +1,13 @@
+version: '3'
+services:
+
+  superset:
+    image: ghcr.io/ezynook/superset/superset:v1
+    container_name: superset
+    ports:
+      - 8088:8088
+      - 5432:5432
+    restart: always
+    volumes:
+      - ./dataset:/home/dataset
+    command: /bin/bash -c "/superset/softnix.sh"
