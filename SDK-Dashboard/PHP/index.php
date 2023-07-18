@@ -94,6 +94,8 @@ echo "
                     iframe {
                             width: 100%;
                             height: 800px;
+                            border: none;
+                            border-width: 0;    
                     }
             </style>
         </head>
