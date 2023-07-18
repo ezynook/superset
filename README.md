@@ -2,6 +2,8 @@
 
 ---
 
+<img src="snapshot/img.png">
+
 # Apache Superset
 
 📊 เป็นเครื่องมือ ```Visualization Tools``` ของสาย ```Developer/Data Engineer ```โปรแกรมนี้จะใช้พื้นฐานการทำงานบน ```Python``` และ ```Query``` ด้วย ```SQLAlchemy``` เป็นหลัก
@@ -46,5 +48,6 @@ Python Flask
 cd SDK-Dashboard/Python/
 python app.py
 ```
+---
 
 > Author: __Pasit.y__
