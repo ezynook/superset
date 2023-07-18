@@ -101,7 +101,7 @@ Route: ```/api/v1/security/guest_token/```
 }
 ```
 ---
-### สร้างไฟล์ ```index.html```
+### สร้างไฟล์ ```index.php```
 ```php
 <?php
 date_default_timezone_set("Asia/Bangkok");
@@ -199,6 +199,8 @@ echo "
                     iframe {
                             width: 100%;
                             height: 800px;
+                            border: none;
+                            border-width: 0;
                     }
             </style>
         </head>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css'>
+    <title>Apache Superset Dashbaord</title>
+    <style type='text/css'>
+        iframe {
+                width: 100%;
+                height: 800px;
+                border: none;
+                border-width: 0;
+            }
+    </style>
+</head>
+
+<body>
+    <nav class='navbar navbar-light bg-light justify-content-between'>
+        <a class='navbar-brand'>
+            <img src='https://repository-images.githubusercontent.com/39464018/58649580-eca4-11ea-844d-c2ddca24b226'
+                width='90'>
+            <span class='badge rounded-pill bg-secondary text-white'>Apache Superset Public Dashboard</span>
+        </a>
+    </nav>
+    <div id='myDiv' class='container-fluid mt-5'></div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js'></script>
+    <script src='https://unpkg.com/@superset-ui/embedded-sdk'></script>
+    <script>
+        const mydata = supersetEmbeddedSdk.embedDashboard({
+            id: '{{ data.dashboard }}',
+            supersetDomain: '{{ data.host }}',
+            mountPoint: document.getElementById('myDiv'),
+            fetchGuestToken: () => '{{ data.token }}',
+            dashboardUiConfig: { // dashboard UI config: hideTitle, hideTab, hideChartControls, filters.visible, filters.expanded (optional)
+                hideTitle: true,
+                filters: {
+                    expanded: true,
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>
