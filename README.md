@@ -31,4 +31,20 @@ CONTAINER ID   IMAGE                COMMAND        CREATED         STATUS       
 -------------------------------------------------------------------------------------------------------------------
 ```
 ---
+
+### 👉 SDK Dashboard
+__เลือกใช้งานได้ 2 ภาษา__
+* PHP
+* Python (Flask Framework)
+
+PHP ให้ Copy file ```index.php``` ไปยัง path document web เช่น ```/var/www/html```
+```bash
+cd SDK-Dashboard/PHP/
+```
+Python Flask
+```bash
+cd SDK-Dashboard/Python/
+python app.py
+```
+
 > Author: __Pasit.y__
