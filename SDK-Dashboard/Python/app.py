@@ -2,7 +2,7 @@ from flask import *
 import json
 import requests
 import asyncio
-import os
+import os, sys
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -48,9 +48,13 @@ def login_token():
     response = requests.request("POST", url, headers=headers, data=payload)
     data = guest_token(response.json()['access_token'])
     return data
-
+#Route เพื่อให้ Owner มา Call เพื่อรับ Guest Token
 @app.route('/get_token', methods=["GET"])
 def getresult():
+    if not request.args.get('dashboard_id'):
+        return jsonify({"message":"dashboard id is empty"})
+        sys.exit(1)
+        
     dashboard_id = request.args.get('dashboard_id')
     url = "http://192.168.10.47:8088/api/v1/security/login"
     payload = json.dumps({
