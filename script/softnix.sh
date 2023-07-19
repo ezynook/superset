@@ -31,15 +31,15 @@ CORS_OPTIONS = {
   'supports_credentials': True,
   'allow_headers': ['*'],
   'resources':['*'],
-  'origins': ['http://localhost:8088', 'http://192.168.10.47:8088']
+  'origins': ['*']
 } 
 EOF
 
 echo "Initializing database"
 superset db upgrade
 
-echo "Creating default roles and permissions"
-superset init
+#echo "Creating default roles and permissions"
+#superset init
 
 gunicorn \
       -w 10 \
