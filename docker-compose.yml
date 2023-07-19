@@ -9,5 +9,8 @@ services:
       - 5432:5432
     restart: always
     volumes:
-      - ./dataset:/home/dataset
+      - superset_db:/var/lib/postgresql/15/main
     command: /bin/bash -c "/superset/softnix.sh"
+
+volumes:
+  superset_db:
