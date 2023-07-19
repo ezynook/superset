@@ -30,11 +30,13 @@ CONTAINER ID   IMAGE                COMMAND        CREATED         STATUS       
 ---
 
 ### 👉 SDK Embedded Dashboard
-[วิธีการใช้งาน SDK](https://github.com/ezynook/superset/blob/main/SDK-Dashboard/README.md)
+* [วิธีการใช้งาน SDK](https://github.com/ezynook/superset/blob/main/SDK-Dashboard/README.md)
+
 
 __เลือกใช้งานได้ 2 ภาษา__
-* PHP
-* Python (Flask Framework)
+* [PHP](https://github.com/ezynook/superset/tree/main/SDK-Dashboard/PHP)
+* [Python (Flask Framework)](https://github.com/ezynook/superset/tree/main/SDK-Dashboard/Python)
+* [ReactJS-SDK](https://github.com/ezynook/superset/tree/main/SDK-Dashboard/React-ts) Credit: [Github](https://github.com/TangAdorable)
 
 PHP ให้ Copy file ```index.php``` ไปยัง path document web เช่น ```/var/www/html```
 ```bash
