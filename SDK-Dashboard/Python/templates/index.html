@@ -21,18 +21,19 @@
         <a class='navbar-brand'>
             <img src='https://repository-images.githubusercontent.com/39464018/58649580-eca4-11ea-844d-c2ddca24b226'
                 width='90'>
-            <span class='badge rounded-pill bg-secondary text-white'>Apache Superset Public Dashboard</span>
-            <span class="badge bg-success" id="alert_msg"></span>
+            <strong>Apache Superset Dashboard</strong>
         </a>
     </nav>
-    <div id='myDiv' class='container-fluid mt-5'></div>
+    <div align="center"><h2><span class="badge bg-success text-white" id="alert_msg"></span></h2></div>
+    <div id='myDiv' class='container-fluid'></div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js'></script>
     <script src='https://unpkg.com/@superset-ui/embedded-sdk'></script>
     <script>
-        $(window).load(() => {
-            $("#alert_msg").html("Wait for Loading ...")
-        });
         $(document).ready(() => {
+            $("#alert_msg").html("Wait for Loading ...");
+            setInterval(() => {
+                $("#alert_msg").html("");
+            }, 3000)
             const mydata = supersetEmbeddedSdk.embedDashboard({
                 id: '{{ data.dashboard }}',
                 supersetDomain: '{{ data.host }}',
