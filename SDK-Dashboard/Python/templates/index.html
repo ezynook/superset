@@ -28,21 +28,25 @@
     <div id='myDiv' class='container-fluid'></div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js'></script>
     <script src='https://unpkg.com/@superset-ui/embedded-sdk'></script>
+    <script src="{{url_for('static', filename='script.js')}}"></script>
     <script>
         $(document).ready(() => {
             $("#alert_msg").html("Wait for Loading ...");
             setInterval(() => {
                 $("#alert_msg").html("");
             }, 3000)
-            const mydata = supersetEmbeddedSdk.embedDashboard({
+            supersetEmbeddedSdk.embedDashboard({
                 id: '{{ data.dashboard }}',
                 supersetDomain: '{{ data.host }}',
                 mountPoint: document.getElementById('myDiv'),
                 fetchGuestToken: () => '{{ data.token }}',
-                dashboardUiConfig: { // dashboard UI config: hideTitle, hideTab, hideChartControls, filters.visible, filters.expanded (optional)
+                dashboardUiConfig: {
                     hideTitle: true,
+                    hideChartControls: false,
+                    hideTab: false,
                     filters: {
                         expanded: true,
+                        visible: false
                     }
                 },
             });
