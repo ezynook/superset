@@ -1,19 +1,14 @@
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Superset_logo.svg/2560px-Superset_logo.svg.png" width="200">
 
 ---
-
 <img src="snapshot/img.png">
 
 # Apache Superset
 
-📊 เป็นเครื่องมือ ```Visualization Tools``` ของสาย ```Developer/Data Engineer ```โปรแกรมนี้จะใช้พื้นฐานการทำงานบน ```Python``` และ ```Query``` ด้วย ```SQLAlchemy``` เป็นหลัก
-
-Apache Superset เป็นโปรแกรม Visualization Tools/Business Intelligence ที่มีข้อดีคือใหม่และมีความเป็น Developer-based สูงมาก เนื่องจากเป็นโปรแกรมที่ใช้เชื่อมกับ Service ของ Big Data ต่างๆ เช่น Cloud Database, Data Warehouse เป็นต้น
-___
 ### 👉 วิธีการติดตั้ง
 ก่อนการติดตั้งต้องมี Docker engine ก่อน โดยสามารถดาวน์โหลดได้ที่ 
-[Windows](https://docs.docker.com/desktop/install/windows-install/)
-[Linux and macOS](https://docs.docker.com/desktop/install/linux-install/)
+* [Windows](https://docs.docker.com/desktop/install/windows-install/)
+* [Linux and macOS](https://docs.docker.com/desktop/install/linux-install/)
 
 ### 👉 ดาวน์โหลดและการใช้งาน
 ```bash
@@ -21,7 +16,7 @@ cd /path/to/superset
 git clone https://github.com/ezynook/superset.git
 ```
 ```bash
-docker-compose up -d
+docker-compose up -d --build
 ```
 __เช็คสถานะการทำงานด้วยคำสั่ง ```docker ps``` จากนั้นดูสถานะดังนี้__
 
@@ -34,7 +29,7 @@ CONTAINER ID   IMAGE                COMMAND        CREATED         STATUS       
 ```
 ---
 
-### 👉 SDK Dashboard
+### 👉 SDK Embedded Dashboard
 [วิธีการใช้งาน SDK](https://github.com/ezynook/superset/blob/main/SDK-Dashboard/README.md)
 
 __เลือกใช้งานได้ 2 ภาษา__
@@ -50,6 +45,16 @@ Python Flask
 cd SDK-Dashboard/Python/
 python app.py
 ```
+Run On Detach
+```bash
+yum install -y nodejs npm
+npm install -g pm2
+```
+Running
+```bash
+pm2 start --name "Superset SDK" python app.py
+```
+
 ---
 
 > Author: __Pasit.y__

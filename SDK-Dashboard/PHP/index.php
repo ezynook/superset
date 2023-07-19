@@ -89,7 +89,7 @@ echo "
             <meta charset='utf-8'>
             <meta name='viewport' content='width=device-width, initial-scale=1'>
             <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css'>
-            <title>Test</title>
+            <title>Apache Superset Embedded Dashboard</title>
             <style type='text/css'>
                     iframe {
                             width: 100%;
@@ -100,23 +100,38 @@ echo "
             </style>
         </head>
         <body>
-            <nav class='navbar navbar-light bg-light justify-content-between'>
-                    <a class='navbar-brand'>
-                            <img src='https://repository-images.githubusercontent.com/39464018/58649580-eca4-11ea-844d-c2ddca24b226'
-                                    width='90'>
-                            <span class='badge rounded-pill bg-secondary text-white'>Apache Superset Public Dashboard</span>
-                    </a>
-            </nav>
+                <nav class='navbar navbar-light bg-light justify-content-between'>
+                        <a class='navbar-brand'>
+                        <img src='https://repository-images.githubusercontent.com/39464018/58649580-eca4-11ea-844d-c2ddca24b226'
+                                width='90'>
+                        <strong>Apache Superset Dashboard</strong>
+                        </a>
+                </nav>
+                <div align='center'><h2><span class='badge bg-success text-white' id='alert_msg'></span></h2></div>
             <div id='myDiv' class='container-fluid mt-5'></div>
             <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js'></script>
             <script src='https://unpkg.com/@superset-ui/embedded-sdk'></script>
             <script>
-                    const mydata = supersetEmbeddedSdk.embedDashboard({
-                        id: '6e96c9aa-95f9-47f8-8046-fa764f94faaf',
-                        supersetDomain: 'http://192.168.10.47:8088',
-                        mountPoint: document.getElementById('myDiv'),
-                        fetchGuestToken: () => '{$obj->get_token()}',
-                        dashboardUiConfig: { hideTitle: true }
+                    $(document).ready(() => {
+                        $('#alert_msg').html('Wait for Loading ...');
+                        setInterval(() => {
+                            $('#alert_msg').html('');
+                        }, 3000)
+                        supersetEmbeddedSdk.embedDashboard({
+                            id: '6e96c9aa-95f9-47f8-8046-fa764f94faaf',
+                            supersetDomain: 'http://192.168.10.47:8088',
+                            mountPoint: document.getElementById('myDiv'),
+                            fetchGuestToken: () => '{$obj->get_token()}',
+                            dashboardUiConfig: {
+                                    hideTitle: true,
+                                    hideChartControls: false,
+                                    hideTab: false,
+                                    filters: {
+                                        expanded: true,
+                                        visible: false
+                                }
+                            },
+                        });
                     });
             </script>
         </body>

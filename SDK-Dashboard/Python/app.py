@@ -94,11 +94,5 @@ def index():
     pack_val = {"token": call_api, "host": HOST, "dashboard": DASHBOARD}
     return render_template("index.html", data=pack_val)
 
-# @app.route('/script')
-# def index():
-#     call_api = login_token()
-#     pack_val = {"token": call_api, "host": HOST, "dashboard": DASHBOARD}
-#     return render_template("index.html", data=pack_val)
-    
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=3000, debug=True)
