@@ -1,11 +1,17 @@
 #!/bin/bash
-
+#--------------------------------#
+#Author: Pasit Yodsoi @Softnix DE.
+#--------------------------------#
 set -eo pipefail
 export FLASK_APP=superset
 export SUPERSET_HOME=/superset
 export PYTHONPATH=$SUPERSET_HOME:$PYTHONPATH
 
-service postgresql start
+if [ -z "$(netstat -lnpt | grep 5432)" ]; then
+  service postgresql start > /dev/null
+else
+  echo "Database is Started"
+fi
 
 rm -f $SUPERSET_HOME/superset_config.py
 cat > $SUPERSET_HOME/superset_config.py <<EOF
