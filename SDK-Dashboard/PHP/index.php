@@ -82,8 +82,7 @@ class Superset_API {
 }
 
 $obj = new Superset_API();
-echo "
-        <!DOCTYPE html>
+echo "<!DOCTYPE html>
         <html>
         <head>
             <meta charset='utf-8'>
@@ -135,5 +134,5 @@ echo "
                     });
             </script>
         </body>
-        </html>
-";
+        </html>";
+?>

@@ -1,8 +1,7 @@
 from flask import *
 import json
 import requests
-import asyncio
-import os, sys
+import sys
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -48,6 +47,7 @@ def login_token():
     response = requests.request("POST", url, headers=headers, data=payload)
     data = guest_token(response.json()['access_token'])
     return data
+
 #Route เพื่อให้ Owner มา Call เพื่อรับ Guest Token
 @app.route('/get_token', methods=["GET"])
 def getresult():
@@ -91,7 +91,11 @@ def getresult():
 @app.route('/')
 def index():
     call_api = login_token()
-    pack_val = {"token": call_api, "host": HOST, "dashboard": DASHBOARD}
+    pack_val = {
+        "token": call_api,
+        "host": HOST,
+        "dashboard": DASHBOARD
+        }
     return render_template("index.html", data=pack_val)
 
 if __name__ == '__main__':
