@@ -1,8 +1,6 @@
 from flask import *
-import json
-import requests
-import sys
 from flask_cors import CORS
+import json, requests, sys
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -13,7 +11,7 @@ USERNAME = "nook"
 PASSWORD = "nook"
 
 def guest_token(key: int):
-    url = "http://192.168.10.47:8088/api/v1/security/guest_token/"
+    url = f"{HOST}/api/v1/security/guest_token/"
     payload = json.dumps({
         "resources": [
             {
@@ -36,7 +34,7 @@ def guest_token(key: int):
     return response.json()['token']
 
 def login_token():
-    url = "http://192.168.10.47:8088/api/v1/security/login"
+    url = f"{HOST}/api/v1/security/login"
     payload = json.dumps({
         "password": str(PASSWORD),
         "provider": "db",
@@ -56,17 +54,17 @@ def getresult():
         sys.exit(1)
         
     dashboard_id = request.args.get('dashboard_id')
-    url = "http://192.168.10.47:8088/api/v1/security/login"
+    url = f"{HOST}/api/v1/security/login"
     payload = json.dumps({
-        "password": "tang",
+        "password": str(USERNAME),
         "provider": "db",
         "refresh": True,
-        "username": "tang"
+        "username": str(USERNAME)
     })
     headers = {'Content-Type': 'application/json'}
     response = requests.request("POST", url, headers=headers, data=payload)
     
-    url = "http://192.168.10.47:8088/api/v1/security/guest_token/"
+    url = f"{HOST}/api/v1/security/guest_token/"
     payload = json.dumps({
         "resources": [
             {
@@ -76,9 +74,9 @@ def getresult():
         ],
         "rls": [],
         "user": {
-            "first_name": "tang",
-            "last_name": "tang",
-            "username": "tang"
+            "first_name": str(USERNAME),
+            "last_name": str(USERNAME),
+            "username": str(USERNAME)
         }
     })
     headers = {

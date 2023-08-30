@@ -5,11 +5,69 @@ header("Access-Control-Allow-Headers: *");
 
 class Superset_API {
 
-	private $SUPERSET_HOST = "http://192.168.10.47:8088";
-	private $USERNAME = "test";
-	private $PASSWORD = "test";
-	private $DASHBOARD = "6e96c9aa-95f9-47f8-8046-fa764f94faaf";
+	public $SUPERSET_HOST = "http://192.168.10.47:8088";
+	public $USERNAME = "guest_username";
+	public $PASSWORD = "guest_password";
+	public $DASHBOARD = "dashboard-id";
 
+    public function __construct(){
+        $this->root();
+    }
+    public function root(){
+        echo "<!DOCTYPE html>
+        <html>
+            <head>
+                <meta charset='utf-8'>
+                <meta name='viewport' content='width=device-width, initial-scale=1'>
+                <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css'>
+                <title>Apache Superset Embedded Dashboard</title>
+                <style type='text/css'>
+                        iframe {
+                                width: 100%;
+                                height: 800px;
+                                border: none;
+                                border-width: 0;    
+                        }
+                </style>
+            </head>
+            <body>
+                    <nav class='navbar navbar-light bg-light justify-content-between'>
+                            <a class='navbar-brand'>
+                            <img src='https://repository-images.githubusercontent.com/39464018/58649580-eca4-11ea-844d-c2ddca24b226'
+                                    width='90'>
+                            <strong>Apache Superset Dashboard</strong>
+                            </a>
+                    </nav>
+                <div align='center'><h2><span class='badge bg-success text-white' id='alert_msg'></span></h2></div>
+                <div id='myDiv' class='container-fluid mt-5'></div>
+                <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js'></script>
+                <script src='https://unpkg.com/@superset-ui/embedded-sdk'></script>
+                <script>
+                        $(document).ready(() => {
+                            $('#alert_msg').html('Wait for Loading ...');
+                            setInterval(() => {
+                                $('#alert_msg').html('');
+                            }, 3000)
+                            supersetEmbeddedSdk.embedDashboard({
+                                id: '{$this->DASHBOARD}',
+                                supersetDomain: '{$this->SUPERSET_HOST}',
+                                mountPoint: document.getElementById('myDiv'),
+                                fetchGuestToken: () => '{$this->get_token()}',
+                                dashboardUiConfig: {
+                                        hideTitle: true,
+                                        hideChartControls: false,
+                                        hideTab: false,
+                                        filters: {
+                                            expanded: true,
+                                            visible: false
+                                    }
+                                },
+                            });
+                        });
+                </script>
+            </body>
+        </html>";
+    }
 	public function get_token() {
 		$curl = curl_init();
 
@@ -82,57 +140,5 @@ class Superset_API {
 }
 
 $obj = new Superset_API();
-echo "<!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset='utf-8'>
-            <meta name='viewport' content='width=device-width, initial-scale=1'>
-            <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css'>
-            <title>Apache Superset Embedded Dashboard</title>
-            <style type='text/css'>
-                    iframe {
-                            width: 100%;
-                            height: 800px;
-                            border: none;
-                            border-width: 0;    
-                    }
-            </style>
-        </head>
-        <body>
-                <nav class='navbar navbar-light bg-light justify-content-between'>
-                        <a class='navbar-brand'>
-                        <img src='https://repository-images.githubusercontent.com/39464018/58649580-eca4-11ea-844d-c2ddca24b226'
-                                width='90'>
-                        <strong>Apache Superset Dashboard</strong>
-                        </a>
-                </nav>
-                <div align='center'><h2><span class='badge bg-success text-white' id='alert_msg'></span></h2></div>
-            <div id='myDiv' class='container-fluid mt-5'></div>
-            <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js'></script>
-            <script src='https://unpkg.com/@superset-ui/embedded-sdk'></script>
-            <script>
-                    $(document).ready(() => {
-                        $('#alert_msg').html('Wait for Loading ...');
-                        setInterval(() => {
-                            $('#alert_msg').html('');
-                        }, 3000)
-                        supersetEmbeddedSdk.embedDashboard({
-                            id: '6e96c9aa-95f9-47f8-8046-fa764f94faaf',
-                            supersetDomain: 'http://192.168.10.47:8088',
-                            mountPoint: document.getElementById('myDiv'),
-                            fetchGuestToken: () => '{$obj->get_token()}',
-                            dashboardUiConfig: {
-                                    hideTitle: true,
-                                    hideChartControls: false,
-                                    hideTab: false,
-                                    filters: {
-                                        expanded: true,
-                                        visible: false
-                                }
-                            },
-                        });
-                    });
-            </script>
-        </body>
-        </html>";
+
 ?>

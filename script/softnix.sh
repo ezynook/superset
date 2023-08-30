@@ -44,8 +44,9 @@ EOF
 echo "Initializing database"
 superset db upgrade
 
-#echo "Creating default roles and permissions"
-#superset init
+#ปิด code นี้หลังจากรันชึ้นมาแล้ว เนื่องจากหาก Restart container จะ re-permission ทำให้ role หาย
+echo "Creating default roles and permissions"
+superset init
 
 gunicorn \
       -w 10 \

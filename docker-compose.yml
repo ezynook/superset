@@ -5,10 +5,10 @@ services:
     # image: ghcr.io/ezynook/superset/superset:v1
     build: .
     container_name: superset
+    restart: always
     ports:
       - 8088:8088
       - 5432:5432
-    restart: always
     volumes:
       - superset_db:/var/lib/postgresql/15/main
     command: /bin/bash -c "/superset/softnix.sh"
