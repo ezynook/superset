@@ -29,7 +29,8 @@ SESSION_COOKIE_SAMESITE = None
 ENABLE_PROXY_FIX = True
 PUBLIC_ROLE_LIKE = "Gamma"
 FEATURE_FLAGS = {
-    "EMBEDDED_SUPERSET": True
+    "EMBEDDED_SUPERSET": True,
+    "ALERT_REPORTS": True
 }
 SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5432/superset'
 
